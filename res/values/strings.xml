@@ -2,4 +2,7 @@
 <resources>
     <string name="hello">Welcome to BabyNamesApp !</string>
     <string name="app_name">BabyNamesApp</string>
+    <string name="origin">Origin</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>
