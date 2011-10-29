@@ -5,4 +5,11 @@
     <string name="origin">Origin</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="common_names">Common Names</string>
+    <string name="un_common_names">Uncommon Names</string>
+    <string name="names_popular_in_specific_city">Names Popular in a City</string>
+    
+    <string name="about_title">About BabyNamesApp</string>
+    <string name="about_text">Baby Names is the app that lets your beautiful bump choose their
+     own name from thousands of baby names or even a short list created by you.</string>
 </resources>
