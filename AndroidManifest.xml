@@ -17,6 +17,11 @@
 			android:label="@string/about_title"
 			android:theme="@android:style/Theme.Dialog">
 		</activity>
+	    <activity android:name=".CommonNames"
+			android:label="@string/common_names"
+			android:theme="@android:style/Theme.Dialog">
+		</activity>
+ 
         
         <activity 
         	android:name=".Select"

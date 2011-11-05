@@ -35,6 +35,9 @@ public class Select extends Activity implements OnClickListener {
 			Intent i = new Intent(this, About.class);
 			startActivity(i);
 			break;
+		case R.id.common_names:
+			Intent cn = new Intent(this, CommonNames.class);
+			startActivity(cn);
 		// More buttons go here (if any) ...
 	}
 
