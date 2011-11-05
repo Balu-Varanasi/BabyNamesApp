@@ -21,9 +21,9 @@ public class CommonNames extends Activity {
 		    R.layout.listview,
 		    c, // Give the cursor to the list adapter
 		  new String[] {c.getColumnName(1),c.getColumnName(2)}, // Map the column in the
-		    // employee database to...
+		    // common names database to...
 		new int[] {R.id.commonName, R.id.commonNameCount}); // The view defined in the XML template
-		    ListView cnListView = (ListView)findViewById(R.id.MainLayout);
+		    ListView cnListView = (ListView)findViewById(R.id.commonName);
 		    cnListView.setAdapter(adapter2);
 		    }
 		    cnTable.close();
