@@ -55,9 +55,7 @@ public class CommonNameTable {
 	  public CommonNameTable(Context ctx) {
 		  
 	      this.mCtx = ctx;
-	      
-	      CommonNameTable commonNameTable = new CommonNameTable(this.mCtx);
-	      commonNameTable.open();
+	      this.open();
 	      
 	      try{
 	    	  
@@ -71,14 +69,14 @@ public class CommonNameTable {
 	    		  strLine = strLine.trim();
 	    		  temp = strLine.split("\\s+");
 	    		  
-		    	  commonNameTable.createCommonName(temp[1], temp[0]);
+		    	  this.createCommonName(temp[1], temp[0]);
 	    	  }
 	    	  is.close();
 	      }
 	      catch (Exception e){//Catch exception if any
 		      Log.i(TAG, "Error while inserting common names into table");
 	      }
-	      commonNameTable.close();
+	      this.close();
 	  }
 	 
 	  public CommonNameTable open() throws SQLException {
