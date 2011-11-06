@@ -17,21 +17,23 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int MainLayout=0x7f070001;
-        public static final int about_button=0x7f070005;
+        public static final int MainLayout=0x7f070002;
+        public static final int about_button=0x7f070006;
         public static final int about_content=0x7f070000;
-        public static final int commonName=0x7f070002;
-        public static final int commonNameCount=0x7f070003;
-        public static final int common_names=0x7f070006;
-        public static final int enter=0x7f070004;
-        public static final int names_popular=0x7f070008;
-        public static final int un_common_names=0x7f070007;
+        public static final int commonName=0x7f070003;
+        public static final int commonNameCount=0x7f070004;
+        public static final int common_name_layout=0x7f070001;
+        public static final int common_names=0x7f070007;
+        public static final int enter=0x7f070005;
+        public static final int names_popular=0x7f070009;
+        public static final int un_common_names=0x7f070008;
     }
     public static final class layout {
         public static final int about=0x7f030000;
-        public static final int listview=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int select=0x7f030003;
+        public static final int common_names=0x7f030001;
+        public static final int listview=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int select=0x7f030004;
     }
     public static final class raw {
         public static final int commonnames=0x7f040000;

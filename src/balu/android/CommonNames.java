@@ -12,8 +12,8 @@ public class CommonNames extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.listview);
+		setContentView(R.layout.common_names);
+
 
 		CommonNameTable cnTable = new CommonNameTable(this);
 		
@@ -28,7 +28,7 @@ public class CommonNames extends Activity {
 					
 					new int[] {R.id.commonName, R.id.commonNameCount});
 			
-					ListView cnListView = (ListView)findViewById(R.id.commonName);
+					ListView cnListView = (ListView)findViewById(R.id.common_name_layout);
 		
 					cnListView.setAdapter(adapter2);
 		    }
