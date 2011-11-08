@@ -43,7 +43,7 @@ public class CommonNamesAdapter {
 	    		strLine = strLine.trim();
 	    		temp = strLine.split("\\s+");
 	    		  
-		    	this.createCommonName(temp[1], temp[0]);
+		    	this.createCommonName(temp[0], temp[1]);
 		    }
 	    	
 	    	is.close();
@@ -81,14 +81,13 @@ public class CommonNamesAdapter {
 	}
 	 
 	public Cursor fetchAllCommonNames() {	 
-	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME,
-	        COMMON_NAME_COUNT}, null, null, null, null, null);
+	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME , COMMON_NAME_COUNT}, null, null, null, null, null);
 	}
 	 
 	public Cursor fetchCommonName(long commonNameId) throws SQLException {
 		
 		Cursor mCursor = database.query(true, DATABASE_TABLE_1, new String[] {
-				COMMON_NAME_ROWID, COMMON_NAME}, COMMON_NAME_ROWID + "=" +
+				COMMON_NAME_ROWID, COMMON_NAME, COMMON_NAME_COUNT}, COMMON_NAME_ROWID + "=" +
 				commonNameId, null, null, null, null, null);
 		
 	    if(mCursor != null) {
