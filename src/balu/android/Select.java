@@ -29,8 +29,9 @@ public class Select extends Activity implements OnClickListener {
     }
     
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		
 		switch (v.getId()) {
+		
 		case R.id.about_button:
 			Intent i = new Intent(this, About.class);
 			startActivity(i);
@@ -39,9 +40,12 @@ public class Select extends Activity implements OnClickListener {
 			Intent cn = new Intent(this, CommonNames.class);
 			startActivity(cn);
 			break;
-		// More buttons go here (if any) ...
+		case R.id.un_common_names:
+			Intent ucn = new Intent(this, UnCommonNames.class);
+			startActivity(ucn);
+			break;
 	}
 
-	}
+}
 
 }

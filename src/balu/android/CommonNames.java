@@ -1,5 +1,6 @@
 package balu.android;
 
+import balu.android.database.CommonNamesAdapter;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,8 +15,7 @@ public class CommonNames extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.common_names);
 
-
-		CommonNameTable cnTable = new CommonNameTable(this);
+		CommonNamesAdapter cnTable = new CommonNamesAdapter(this);
 		
 		cnTable.open();
 		Cursor c = cnTable.fetchAllCommonNames();
@@ -33,5 +33,6 @@ public class CommonNames extends Activity {
 					cnListView.setAdapter(adapter2);
 		    }
 		cnTable.close();
+		
 	}
 }

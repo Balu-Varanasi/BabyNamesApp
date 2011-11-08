@@ -22,6 +22,10 @@
 			android:theme="@android:style/Theme.Dialog">
 		</activity>
  
+ 	    <activity android:name=".UnCommonNames"
+			android:label="@string/un_common_names"
+			android:theme="@android:style/Theme.Dialog">
+		</activity>
         
         <activity 
         	android:name=".Select"
