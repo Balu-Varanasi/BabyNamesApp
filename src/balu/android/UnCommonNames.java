@@ -20,6 +20,7 @@ public class UnCommonNames extends Activity {
 		
 		ucnTable.open();
 		Cursor c = ucnTable.fetchAllUnCommonNames();
+		startManagingCursor(c);
 		
 		if (c != null){
 			SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this,

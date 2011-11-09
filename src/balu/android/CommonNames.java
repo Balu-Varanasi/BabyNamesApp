@@ -19,6 +19,7 @@ public class CommonNames extends Activity {
 		
 		cnTable.open();
 		Cursor c = cnTable.fetchAllCommonNames();
+		startManagingCursor(c);
 		
 		if (c != null){
 			SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this,
@@ -32,7 +33,8 @@ public class CommonNames extends Activity {
 		
 					cnListView.setAdapter(adapter2);
 		    }
+
 		cnTable.close();
-		
+	
 	}
 }
