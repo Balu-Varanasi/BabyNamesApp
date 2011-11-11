@@ -12,4 +12,8 @@
     <string name="about_title">About BabyNamesApp</string>
     <string name="about_text">Baby Names is the app that lets your beautiful bump choose their
      own name from thousands of baby names or even a short list created by you.</string>
+     
+     <string name="popular_names">Popular Baby Names by Country</string>
+     <string name="popular_names_text">This is Yet to be implemented. In this
+     	Activity you will be having the option to view baby names filtered by country</string>
 </resources>

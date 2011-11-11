@@ -55,7 +55,6 @@ public class CommonNamesAdapter {
 	}
 
 	public CommonNamesAdapter open() throws SQLException {
-		
 		Log.i(TAG, "OPening DataBase Connection....");
 		baby_names_db_helper = new BabyNamesDBHelper(context);
 		database = baby_names_db_helper.getWritableDatabase();
@@ -71,11 +70,12 @@ public class CommonNamesAdapter {
 
 	    ContentValues initialValues = new ContentValues();
 
-	    initialValues.put(COMMON_NAME, commonName);
 	    initialValues.put(COMMON_NAME_COUNT, commonNameCount);
-	
+	    initialValues.put(COMMON_NAME, commonName);
+	    
 	    return database.insert(DATABASE_TABLE_1, null, initialValues);
 	} 
+
 	public boolean deleteCommonName(long rowId) {
 	    return database.delete(DATABASE_TABLE_1, COMMON_NAME_ROWID + "=" + rowId, null) > 0;
 	}
@@ -95,6 +95,20 @@ public class CommonNamesAdapter {
 	    }
 	    return mCursor;
 	}
+	public Cursor fetch_all_common_names_only() {	 
+	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME_COUNT}, null, null, null, null, null);
+	}
+	
+	public Cursor fetchCommonNameCount(long commonNameId) throws SQLException {
+		
+		Cursor mCursor = database.query(true, DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME_COUNT}, 
+				COMMON_NAME_ROWID + "=" + commonNameId, null, null, null, null, null);
+		
+		if(mCursor!=null) {
+			mCursor.moveToFirst();
+		}
+		return mCursor;
+	}
 	
 	public boolean updateCommonName(int commonNameId, String commonName, String commonNameCount) {
 	    ContentValues args = new ContentValues();
@@ -103,6 +117,4 @@ public class CommonNamesAdapter {
 	 
 	    return database.update(DATABASE_TABLE_1, args, COMMON_NAME_ROWID + "=" + commonNameId, null) > 0;
 	  }
-	 
-
 }

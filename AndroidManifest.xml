@@ -26,6 +26,11 @@
 			android:label="@string/un_common_names"
 			android:theme="@android:style/Theme.Dialog">
 		</activity>
+	    <activity android:name=".PopularNames"
+			android:label="@string/popular_names"
+			android:theme="@android:style/Theme.Dialog">
+		</activity>
+  
         
         <activity 
         	android:name=".Select"

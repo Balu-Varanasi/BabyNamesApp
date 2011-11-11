@@ -44,6 +44,10 @@ public class Select extends Activity implements OnClickListener {
 			Intent ucn = new Intent(this, UnCommonNames.class);
 			startActivity(ucn);
 			break;
+		case R.id.names_popular:
+			Intent np = new Intent(this, PopularNames.class);
+			startActivity(np);
+			break;
 	}
 
 }

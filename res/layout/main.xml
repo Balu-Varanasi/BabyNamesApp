@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -6,13 +7,14 @@
     android:layout_gravity="center"
     android:padding="10dp"
     >
-	<TextView  
-    	android:layout_width="fill_parent" 
-    	android:layout_height="wrap_content" 
-    	android:text="@string/hello"
-    	android:textSize="20dp" 
-    	android:padding="10dp"/>
-	<Button 
+    <ImageView 
+    	android:src="@drawable/baby_names_img"
+        android:layout_width="match_parent"
+ 		android:layout_height="360dp"
+    
+    	/>
+  
+<Button 
 		android:text="Click here to Enter" 
 		android:id="@+id/enter" 
 		android:layout_height="wrap_content" 

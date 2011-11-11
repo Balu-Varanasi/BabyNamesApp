@@ -16,23 +16,22 @@ public class UnCommonNames extends Activity {
 		setContentView(R.layout.un_common_names);
 
 		UnCommonNamesAdapter ucnTable = new UnCommonNamesAdapter(this);
-	
+		ListView ucnListView = (ListView)findViewById(R.id.un_common_name_layout);
 		
 		ucnTable.open();
 		Cursor c = ucnTable.fetchAllUnCommonNames();
 		startManagingCursor(c);
 		
 		if (c != null){
-			SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this,
+			SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 					R.layout.un_common_listview,
 					c, // Give the cursor to the list adapter
 					new String[] {c.getColumnName(1)},
 					
 					new int[] {R.id.uncommonName});
 			
-					ListView ucnListView = (ListView)findViewById(R.id.un_common_name_layout);
 		
-					ucnListView.setAdapter(adapter2);
+					ucnListView.setAdapter(adapter);
 		    }
 		ucnTable.close();
 		
