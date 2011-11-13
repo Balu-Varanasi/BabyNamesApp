@@ -11,13 +11,11 @@
     	android:src="@drawable/baby_names_img"
         android:layout_width="match_parent"
  		android:layout_height="360dp"
-    
-    	/>
-  
-<Button 
+    />
+	<Button 
 		android:text="Click here to Enter" 
 		android:id="@+id/enter" 
 		android:layout_height="wrap_content" 
 		android:layout_width="fill_parent">
-		</Button>
+	</Button>
 </LinearLayout>

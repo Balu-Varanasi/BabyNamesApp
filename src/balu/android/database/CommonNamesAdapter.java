@@ -20,17 +20,16 @@ public class CommonNamesAdapter {
 	public static final String COMMON_NAME_ROWID = "_id";
 	public static final String COMMON_NAME = "common_name";
 	public static final String COMMON_NAME_COUNT = "common_name_count";
-		
-	private final Context context;
+
+	
 	private SQLiteDatabase database;
 
 	public static final String TAG = "COMMON_NAMES_TABLE";	
 	private BabyNamesDBHelper baby_names_db_helper;
 
 	public CommonNamesAdapter(Context context) {
-		  
-	    this.context = context;
-	    this.open();
+		
+	    this.open(context);
 	      
 	    try{
 	    	InputStream is = context.getResources().openRawResource(R.raw.commonnames);
@@ -54,7 +53,7 @@ public class CommonNamesAdapter {
 	    this.close();
 	}
 
-	public CommonNamesAdapter open() throws SQLException {
+	public CommonNamesAdapter open(Context context) throws SQLException {
 		Log.i(TAG, "OPening DataBase Connection....");
 		baby_names_db_helper = new BabyNamesDBHelper(context);
 		database = baby_names_db_helper.getWritableDatabase();

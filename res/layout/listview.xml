@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout 
+<LinearLayout 
    	xmlns:android="http://schemas.android.com/apk/res/android"
+   	android:id="@+id/rowLayout"
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content" 
-	android:id="@+id/MainLayout">
+	>
 	<TextView 
 		android:id="@+id/commonName"
 		android:layout_alignParentLeft="true"
@@ -12,5 +13,7 @@
 		android:textSize="16dp"
 		android:paddingLeft="14dp"
 		android:paddingTop="4dp"
-		android:paddingBottom="4dp"/>
-</RelativeLayout>
+		android:paddingBottom="4dp"
+	/>
+	
+</LinearLayout>
