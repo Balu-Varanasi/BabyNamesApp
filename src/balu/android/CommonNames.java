@@ -1,68 +1,69 @@
 package balu.android;
 
-import android.app.Activity;
-import android.content.Context;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 import balu.android.database.CommonNamesAdapter;
 
-public class CommonNames extends Activity {
+public class CommonNames extends ListActivity {
 	
-	TextView rowview;
-
+	CommonNamesAdapter cnTable;
+	ListView cnListView;
+	Cursor c;
+	
+	private static final int COMMON_NAME_ACTIVITY_START = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.common_names);
+		setContentView(R.layout.common_names_list);
 		
-		rowview = (TextView)findViewById(R.id.commonName);
-		
-		CommonNamesAdapter cnTable = new CommonNamesAdapter(this);
-		ListView cnListView = (ListView)findViewById(R.id.common_name_layout);
-		
+		cnTable = new CommonNamesAdapter(this);
 		cnTable.open(getApplicationContext());
-		Cursor c = cnTable.fetch_all_common_names_only();
+		
+		c = cnTable.fetch_all_common_names_only();
 		startManagingCursor(c);
 		
 		if(c!=null){
 			SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-					R.layout.listview,
+					R.layout.common_names_row,
 					c,
-					new String[] {c.getColumnName(0), c.getColumnName(1)},
-					
-					new int[] {R.id.rowLayout,R.id.commonName});
-			
-					cnListView.setAdapter(adapter);
-					
-		    }
-		
-		
-		rowview.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				
-				Context context = getApplicationContext();
-				
-				String id = context.getString(R.id.commonName);
-				CharSequence text = "This id of this item is... "+id ;
-				int duration = Toast.LENGTH_SHORT;
-
-				Toast toast = Toast.makeText(context, text, duration);
-				toast.show();
-				
-			}
-
-
-		});
-		cnTable.close();
+					new String[] {c.getColumnName(1)},
+					new int[] {R.id.commonName});
+					setListAdapter(adapter);		
+		}
 	}
+		
 	
-	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+	    c.moveToPosition(position);
+	    Intent i = new Intent(this, CommonNameDescription.class);
+	    i.putExtra(CommonNamesAdapter.COMMON_NAME_ROWID, id);
+	    i.putExtra(CommonNamesAdapter.COMMON_NAME, c.getString(
+	    		c.getColumnIndexOrThrow(CommonNamesAdapter.COMMON_NAME)));
+	    i.putExtra(CommonNamesAdapter.COMMON_NAME_COUNT, c.getString(
+	    c.getColumnIndexOrThrow(CommonNamesAdapter.COMMON_NAME_COUNT)));
+	    startActivityForResult(i, COMMON_NAME_ACTIVITY_START);
+	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        //Bundle extras = intent.getExtras();
+        switch(requestCode) {
+        	default: break;
+        }
+    }
+    @Override
+    protected void onDestroy(){
+		super.onDestroy();
+		cnTable.close();
+    }
+
 }

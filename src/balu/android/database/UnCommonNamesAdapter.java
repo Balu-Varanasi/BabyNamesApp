@@ -19,8 +19,8 @@ public class UnCommonNamesAdapter {
 	
 	public static final String UN_COMMON_NAME_ROWID = "_id";
 	public static final String UN_COMMON_NAME = "un_common_name";
-		
-	private final Context context;
+	public static final String UN_COMMON_NAME_MEANING = "un_common_name_meaning";
+	
 	private SQLiteDatabase database;
 
 	public static final String TAG = "UN_COMMON_NAMES_TABLE";	
@@ -28,8 +28,7 @@ public class UnCommonNamesAdapter {
 
 	public UnCommonNamesAdapter(Context context) {
 		
-	    this.context = context;
-	    this.open();
+	    this.open(context);
 	      
 	    try{
 	    	InputStream is = context.getResources().openRawResource(R.raw.uncommonnames);
@@ -37,8 +36,12 @@ public class UnCommonNamesAdapter {
 	        String strLine = null;
 
 	    	while ((strLine = br.readLine()) != null) {
-	    		strLine = strLine.trim();    		  
-		    	this.createUnCommonName(strLine);
+	    		String[] temp;
+
+	    		strLine = strLine.trim();
+	    		temp = strLine.split(":");
+	    		  
+		    	this.createUnCommonName(temp[0], temp[1]);
 		    }
 	    	is.close();
 	    }
@@ -48,7 +51,7 @@ public class UnCommonNamesAdapter {
 	    this.close();
 	}
 
-	public UnCommonNamesAdapter open() throws SQLException {
+	public UnCommonNamesAdapter open(Context context) throws SQLException {
 		
 		Log.i(TAG, "OPening DataBase Connection....");
 		baby_names_db_helper = new BabyNamesDBHelper(context);
@@ -60,12 +63,13 @@ public class UnCommonNamesAdapter {
 		database.close();
 	}
 		  
-	public long createUnCommonName(String uncommonName) {
+	public long createUnCommonName(String uncommonName, String unCommonNameMeaning) {
 		Log.i(TAG, "Inserting record...");
 
 	    ContentValues initialValues = new ContentValues();
 
 	    initialValues.put(UN_COMMON_NAME, uncommonName);
+	    initialValues.put(UN_COMMON_NAME_MEANING, unCommonNameMeaning);
 	    
 	    return database.insert(DATABASE_TABLE_2, null, initialValues);
 	}
@@ -76,11 +80,11 @@ public class UnCommonNamesAdapter {
 	 
 	public Cursor fetchAllUnCommonNames() {	 
 	    return database.query(DATABASE_TABLE_2, 
-	    		new String[] {UN_COMMON_NAME_ROWID, UN_COMMON_NAME,},
+	    		new String[] {UN_COMMON_NAME_ROWID, UN_COMMON_NAME, UN_COMMON_NAME_MEANING},
 	    		null, null, null, null, null);
 	}
 	 
-	public Cursor fetchCommonName(long uncommonNameId) throws SQLException {
+	public Cursor fetchUnCommonName(long uncommonNameId) throws SQLException {
 		
 		Cursor mCursor = database.query(true, DATABASE_TABLE_2, new String[] {
 				UN_COMMON_NAME_ROWID, UN_COMMON_NAME}, UN_COMMON_NAME_ROWID + "=" +
@@ -92,9 +96,10 @@ public class UnCommonNamesAdapter {
 	    return mCursor;
 	}
 	
-	public boolean updateUnCommonName(int uncommonNameId, String uncommonName) {
+	public boolean updateUnCommonName(int uncommonNameId, String uncommonName, String unCommonNameMeaning) {
 	    ContentValues args = new ContentValues();
 	    args.put(UN_COMMON_NAME, uncommonName);
+	    args.put(UN_COMMON_NAME_MEANING, unCommonNameMeaning);
 	   
 	    return database.update(DATABASE_TABLE_2, args, UN_COMMON_NAME_ROWID, null) > 0;
 	  }

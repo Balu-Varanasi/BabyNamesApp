@@ -18,29 +18,29 @@ public final class R {
         public static final int icon=0x7f020001;
     }
     public static final class id {
-        public static final int about_button=0x7f070006;
+        public static final int about_button=0x7f070005;
         public static final int about_content=0x7f070000;
-        public static final int commonName=0x7f070003;
-        public static final int common_name_layout=0x7f070001;
-        public static final int common_names=0x7f070007;
-        public static final int enter=0x7f070004;
-        public static final int names_popular=0x7f070009;
-        public static final int popular_baby_names=0x7f070005;
-        public static final int rowLayout=0x7f070002;
-        public static final int unCommonMainLayout=0x7f07000a;
-        public static final int un_common_name_layout=0x7f07000c;
-        public static final int un_common_names=0x7f070008;
-        public static final int uncommonName=0x7f07000b;
+        public static final int commonName=0x7f070002;
+        public static final int common_name_description_text=0x7f070001;
+        public static final int common_names=0x7f070006;
+        public static final int enter=0x7f070003;
+        public static final int names_popular=0x7f070008;
+        public static final int popular_baby_names=0x7f070004;
+        public static final int unCommonName=0x7f070009;
+        public static final int un_common_name_description_text=0x7f07000a;
+        public static final int un_common_names=0x7f070007;
     }
     public static final class layout {
         public static final int about=0x7f030000;
-        public static final int common_names=0x7f030001;
-        public static final int listview=0x7f030002;
-        public static final int main=0x7f030003;
-        public static final int popular_names=0x7f030004;
-        public static final int select=0x7f030005;
-        public static final int un_common_listview=0x7f030006;
-        public static final int un_common_names=0x7f030007;
+        public static final int common_names_description=0x7f030001;
+        public static final int common_names_list=0x7f030002;
+        public static final int common_names_row=0x7f030003;
+        public static final int main=0x7f030004;
+        public static final int popular_names=0x7f030005;
+        public static final int select=0x7f030006;
+        public static final int un_common_name_row=0x7f030007;
+        public static final int un_common_names_description=0x7f030008;
+        public static final int un_common_names_list=0x7f030009;
     }
     public static final class raw {
         public static final int commonnames=0x7f040000;

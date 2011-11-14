@@ -95,7 +95,7 @@ public class CommonNamesAdapter {
 	    return mCursor;
 	}
 	public Cursor fetch_all_common_names_only() {	 
-	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME_COUNT}, null, null, null, null, null);
+	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME_COUNT, COMMON_NAME}, null, null, null, null, null);
 	}
 	
 	public Cursor fetchCommonNameCount(long commonNameId) throws SQLException {

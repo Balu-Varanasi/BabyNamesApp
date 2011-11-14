@@ -21,11 +21,23 @@
 			android:label="@string/common_names"
 			android:theme="@android:style/Theme.Dialog">
 		</activity>
+			    <activity android:name=".CommonNameDescription"
+			android:label="@string/common_names"
+			android:theme="@android:style/Theme.Dialog">
+		</activity>
+ 
  
  	    <activity android:name=".UnCommonNames"
 			android:label="@string/un_common_names"
 			android:theme="@android:style/Theme.Dialog">
 		</activity>
+			    <activity android:name=".UnCommonNamesDescription"
+			android:label="@string/un_common_names"
+			android:theme="@android:style/Theme.Dialog">
+		</activity>
+		
+		
+		
 	    <activity android:name=".PopularNames"
 			android:label="@string/popular_names"
 			android:theme="@android:style/Theme.Dialog">
