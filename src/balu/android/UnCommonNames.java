@@ -36,8 +36,7 @@ public class UnCommonNames extends ListActivity {
 					new int[] {R.id.unCommonName});
 			
 					setListAdapter(adapter);
-		    }
-		ucnTable.close();	
+		    }	
 	}
 	
 	@Override
@@ -49,21 +48,21 @@ public class UnCommonNames extends ListActivity {
 	    i.putExtra(UnCommonNamesAdapter.UN_COMMON_NAME, c.getString(
 	    		c.getColumnIndexOrThrow(UnCommonNamesAdapter.UN_COMMON_NAME)));
 	    i.putExtra(UnCommonNamesAdapter.UN_COMMON_NAME_MEANING, c.getString(
-	    c.getColumnIndexOrThrow(UnCommonNamesAdapter.UN_COMMON_NAME_MEANING)));
+	    		c.getColumnIndexOrThrow(UnCommonNamesAdapter.UN_COMMON_NAME_MEANING)));
 	    startActivityForResult(i, UN_COMMON_NAME_ACTIVITY_START);
 	}
 	
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        //Bundle extras = intent.getExtras();
-        switch(requestCode) {
-        	default: break;
-        }
-    }
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+	      super.onActivityResult(requestCode, resultCode, intent);
+	      //Bundle extras = intent.getExtras();
+	      switch(requestCode) {
+	      	default: break;
+	      }
+	}
     @Override
     protected void onDestroy(){
 		super.onDestroy();
+		c.close();
 		ucnTable.close();
     }
 

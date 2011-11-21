@@ -63,6 +63,7 @@ public class CommonNames extends ListActivity {
     @Override
     protected void onDestroy(){
 		super.onDestroy();
+		c.close();
 		cnTable.close();
     }
 

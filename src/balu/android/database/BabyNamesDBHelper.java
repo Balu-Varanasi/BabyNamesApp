@@ -8,7 +8,7 @@ import android.util.Log;
 public class BabyNamesDBHelper extends SQLiteOpenHelper {
 	
 	public static final String DATABASE_NAME = "baby_names_database";
-	public static final int DATABASE_VERSION = 3;
+	public static final int DATABASE_VERSION = 4;
 	
 	public static final String DATABASE_TABLE_1 = "common_names";
 	public static final String DATABASE_TABLE_2 = "un_common_names";
@@ -29,7 +29,7 @@ public class BabyNamesDBHelper extends SQLiteOpenHelper {
 	static final String CREATE_DATABASE_TABLE_2 =
 	    "create table " + DATABASE_TABLE_2 + " (" + UN_COMMON_NAME_ROWID + 
 	    " integer primary key autoincrement, " + UN_COMMON_NAME +
-	    " text not null, " + UN_COMMON_NAME_MEANING + " text not nusll);";
+	    " text not null, " + UN_COMMON_NAME_MEANING + " text not null);";
 	
 	public static final String TAG_1 = "COMMON_NAMES_TABLE";
 	public static final String TAG_2 = "UNCOMMON_NAMES_TABLE";

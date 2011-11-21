@@ -12,7 +12,7 @@ public class UnCommonNamesDescription extends Activity {
 	String un_common_name_meaning;
 	long un_common_name_rowid;
 	
-	CharSequence text = "The meaning of ";
+	CharSequence text = " means... ";
 	CharSequence description;
 	
 	public static TextView tv;
@@ -28,7 +28,7 @@ public class UnCommonNamesDescription extends Activity {
         un_common_name = extras.getString(UnCommonNamesAdapter.UN_COMMON_NAME);
         un_common_name_meaning = extras.getString(UnCommonNamesAdapter.UN_COMMON_NAME_MEANING).toString();
         
-        description = text+un_common_name+" is " + un_common_name_meaning;
+        description = un_common_name+text+ un_common_name_meaning;
         tv = (TextView)findViewById(R.id.un_common_name_description_text);
         
         tv.setText(description);

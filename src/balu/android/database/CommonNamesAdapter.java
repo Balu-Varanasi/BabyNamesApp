@@ -42,7 +42,7 @@ public class CommonNamesAdapter {
 	    		strLine = strLine.trim();
 	    		temp = strLine.split("\\s+");
 	    		  
-		    	this.createCommonName(temp[0], temp[1]);
+		    	this.createCommonName(temp[0].trim(), temp[1].trim());
 		    }
 	    	
 	    	is.close();
