@@ -1,11 +1,5 @@
 package balu.android.database;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import balu.android.R;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,29 +24,7 @@ public class CommonNamesAdapter {
 	public static final String TAG = "COMMON_NAMES_TABLE";	
 	private BabyNamesDBHelper baby_names_db_helper;
 
-	public CommonNamesAdapter(Context context) {
-
-		this.open(context);
-
-		try{
-			InputStream is = context.getResources().openRawResource(R.raw.commonnames);
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			String strLine = null;
-
-			while ((strLine = (br.readLine()).trim()) != null) {
-				String[] temp;
-
-				temp = strLine.split("\\s+");
-
-				this.createCommonName(temp[0].trim(), temp[1].trim());
-			}
-
-			is.close();
-		}
-		catch (Exception e){
-			Log.i(TAG, "Error while inserting common names into table");
-		}
-		this.close();
+	public CommonNamesAdapter() {
 	}
 
 	public CommonNamesAdapter open(Context context) throws SQLException {

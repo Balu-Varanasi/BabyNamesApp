@@ -1,9 +1,15 @@
 package balu.android.database;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import balu.android.R;
 
 public class BabyNamesDBHelper extends SQLiteOpenHelper {
 
@@ -43,12 +49,13 @@ public class BabyNamesDBHelper extends SQLiteOpenHelper {
 
 	// Object for a SQLiteDatabase
 	public SQLiteDatabase mDb;
+	private Context context;
 
 	// Constructor
 	public BabyNamesDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
-
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -56,10 +63,12 @@ public class BabyNamesDBHelper extends SQLiteOpenHelper {
 		// Creating Table
 		Log.i(TAG_1, "Creating Table: " + CREATE_DATABASE_TABLE_1);
 		db.execSQL(CREATE_DATABASE_TABLE_1);
+		insertDataIntoCommonNames(db);
 
 		// Creating Table
 		Log.i(TAG_2,"Creating Table: "+CREATE_DATABASE_TABLE_2);
 		db.execSQL(CREATE_DATABASE_TABLE_2);
+		insertDataIntoUnCommonNames(db);
 	}
 
 	@Override
@@ -76,4 +85,58 @@ public class BabyNamesDBHelper extends SQLiteOpenHelper {
 
 	}
 
+	private void insertDataIntoCommonNames(SQLiteDatabase db) {
+		
+		try{
+			InputStream is = context.getResources().openRawResource(R.raw.commonnames);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			String strLine = null;
+
+			while ((strLine = (br.readLine()).trim()) != null) {
+				String[] temp;
+
+				temp = strLine.split("\\s+");
+
+				ContentValues initialValues = new ContentValues();
+
+				initialValues.put(COMMON_NAME_COUNT, temp[0].trim());
+				initialValues.put(COMMON_NAME, temp[1].trim());
+
+				db.insert(DATABASE_TABLE_1, null, initialValues);
+			}
+
+			is.close();
+		}
+		catch (Exception e){
+			Log.i(TAG_1, "Error while inserting common names into table");
+		}
+
+	}
+	
+	private void insertDataIntoUnCommonNames(SQLiteDatabase db) {
+	      
+	    try{
+	    	InputStream is = context.getResources().openRawResource(R.raw.uncommonnames);
+	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+	        String strLine = null;
+
+	    	while ((strLine = br.readLine()) != null) {
+	    		String[] temp;
+
+	    		strLine = strLine.trim();
+	    		temp = strLine.split(":");
+		    	
+			    ContentValues initialValues = new ContentValues();
+
+			    initialValues.put(UN_COMMON_NAME, temp[0]);
+			    initialValues.put(UN_COMMON_NAME_MEANING, temp[1]);
+			    
+			    db.insert(DATABASE_TABLE_2, null, initialValues);
+		    }
+	    	is.close();
+	    }
+	    catch (Exception e){
+	    	Log.i(TAG_2, "Error while inserting common names into table");
+	    }
+	}
 }

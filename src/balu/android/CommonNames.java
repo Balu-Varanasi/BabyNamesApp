@@ -23,7 +23,7 @@ public class CommonNames extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.common_names_list);
 
-		cnTable = new CommonNamesAdapter(this);
+		cnTable = new CommonNamesAdapter();
 		cnTable.open(getApplicationContext());
 
 		c = cnTable.fetchAllCommonNames();

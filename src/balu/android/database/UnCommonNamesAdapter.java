@@ -1,11 +1,5 @@
 package balu.android.database;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import balu.android.R;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -27,28 +21,7 @@ public class UnCommonNamesAdapter {
 	private BabyNamesDBHelper baby_names_db_helper;
 
 	public UnCommonNamesAdapter(Context context) {
-		
-	    this.open(context);
-	      
-	    try{
-	    	InputStream is = context.getResources().openRawResource(R.raw.uncommonnames);
-	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-	        String strLine = null;
 
-	    	while ((strLine = br.readLine()) != null) {
-	    		String[] temp;
-
-	    		strLine = strLine.trim();
-	    		temp = strLine.split(":");
-	    		  
-		    	this.createUnCommonName(temp[0], temp[1]);
-		    }
-	    	is.close();
-	    }
-	    catch (Exception e){
-	    	Log.i(TAG, "Error while inserting common names into table");
-	    }
-	    this.close();
 	}
 
 	public UnCommonNamesAdapter open(Context context) throws SQLException {
