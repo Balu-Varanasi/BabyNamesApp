@@ -81,7 +81,7 @@ public class UnCommonNamesAdapter {
 	public Cursor fetchAllUnCommonNames() {	 
 	    return database.query(DATABASE_TABLE_2, 
 	    		new String[] {UN_COMMON_NAME_ROWID, UN_COMMON_NAME, UN_COMMON_NAME_MEANING},
-	    		null, null, null, null, null);
+	    		null, null, null, null, UN_COMMON_NAME);
 	}
 	 
 	public Cursor fetchUnCommonName(long uncommonNameId) throws SQLException {

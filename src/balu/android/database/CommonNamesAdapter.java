@@ -15,42 +15,44 @@ import android.util.Log;
 
 public class CommonNamesAdapter {
 
+	// Database table name
 	public static final String DATABASE_TABLE_1 = "common_names";
-	
+
+	// Database table columns for DATABASE_TABLE_1
 	public static final String COMMON_NAME_ROWID = "_id";
 	public static final String COMMON_NAME = "common_name";
 	public static final String COMMON_NAME_COUNT = "common_name_count";
 
-	
+	// Object for SQLiteDatabase
 	private SQLiteDatabase database;
 
+	// 
 	public static final String TAG = "COMMON_NAMES_TABLE";	
 	private BabyNamesDBHelper baby_names_db_helper;
 
 	public CommonNamesAdapter(Context context) {
-		
-	    this.open(context);
-	      
-	    try{
-	    	InputStream is = context.getResources().openRawResource(R.raw.commonnames);
-	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-	        String strLine = null;
 
-	    	while ((strLine = br.readLine()) != null) {
-	    		String[] temp;
+		this.open(context);
 
-	    		strLine = strLine.trim();
-	    		temp = strLine.split("\\s+");
-	    		  
-		    	this.createCommonName(temp[0].trim(), temp[1].trim());
-		    }
-	    	
-	    	is.close();
-	    }
-	    catch (Exception e){
-	    	Log.i(TAG, "Error while inserting common names into table");
-	    }
-	    this.close();
+		try{
+			InputStream is = context.getResources().openRawResource(R.raw.commonnames);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			String strLine = null;
+
+			while ((strLine = (br.readLine()).trim()) != null) {
+				String[] temp;
+
+				temp = strLine.split("\\s+");
+
+				this.createCommonName(temp[0].trim(), temp[1].trim());
+			}
+
+			is.close();
+		}
+		catch (Exception e){
+			Log.i(TAG, "Error while inserting common names into table");
+		}
+		this.close();
 	}
 
 	public CommonNamesAdapter open(Context context) throws SQLException {
@@ -59,61 +61,61 @@ public class CommonNamesAdapter {
 		database = baby_names_db_helper.getWritableDatabase();
 		return this;
 	}
-	
+
 	public void close() {
 		database.close();
 	}
-		  
-	public long createCommonName(String commonName, String commonNameCount) {
+
+	public long createCommonName(String commonNameCount, String commonName) {
 		Log.i(TAG, "Inserting record...");
 
-	    ContentValues initialValues = new ContentValues();
+		ContentValues initialValues = new ContentValues();
 
-	    initialValues.put(COMMON_NAME_COUNT, commonNameCount);
-	    initialValues.put(COMMON_NAME, commonName);
-	    
-	    return database.insert(DATABASE_TABLE_1, null, initialValues);
+		initialValues.put(COMMON_NAME_COUNT, commonNameCount);
+		initialValues.put(COMMON_NAME, commonName);
+
+		return database.insert(DATABASE_TABLE_1, null, initialValues);
 	} 
 
 	public boolean deleteCommonName(long rowId) {
-	    return database.delete(DATABASE_TABLE_1, COMMON_NAME_ROWID + "=" + rowId, null) > 0;
+		return database.delete(DATABASE_TABLE_1, COMMON_NAME_ROWID + "=" + rowId, null) > 0;
 	}
-	 
+
 	public Cursor fetchAllCommonNames() {	 
-	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME , COMMON_NAME_COUNT}, null, null, null, null, null);
+		return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME , COMMON_NAME_COUNT}, null, null, null, null, COMMON_NAME);
 	}
-	 
+
 	public Cursor fetchCommonName(long commonNameId) throws SQLException {
-		
+
 		Cursor mCursor = database.query(true, DATABASE_TABLE_1, new String[] {
 				COMMON_NAME_ROWID, COMMON_NAME, COMMON_NAME_COUNT}, COMMON_NAME_ROWID + "=" +
-				commonNameId, null, null, null, null, null);
-		
-	    if(mCursor != null) {
-	    	mCursor.moveToFirst();
-	    }
-	    return mCursor;
+						commonNameId, null, null, null, null, null);
+
+		if(mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		return mCursor;
 	}
 	public Cursor fetch_all_common_names_only() {	 
-	    return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME_COUNT, COMMON_NAME}, null, null, null, null, null);
+		return database.query(DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME, COMMON_NAME_COUNT}, null, null, null, null, null);
 	}
-	
+
 	public Cursor fetchCommonNameCount(long commonNameId) throws SQLException {
-		
+
 		Cursor mCursor = database.query(true, DATABASE_TABLE_1, new String[] {COMMON_NAME_ROWID, COMMON_NAME_COUNT}, 
 				COMMON_NAME_ROWID + "=" + commonNameId, null, null, null, null, null);
-		
+
 		if(mCursor!=null) {
 			mCursor.moveToFirst();
 		}
 		return mCursor;
 	}
-	
+
 	public boolean updateCommonName(int commonNameId, String commonName, String commonNameCount) {
-	    ContentValues args = new ContentValues();
-	    args.put(COMMON_NAME, commonName);
-	    args.put(COMMON_NAME_COUNT, commonNameCount);
-	 
-	    return database.update(DATABASE_TABLE_1, args, COMMON_NAME_ROWID + "=" + commonNameId, null) > 0;
-	  }
+		ContentValues args = new ContentValues();
+		args.put(COMMON_NAME, commonName);
+		args.put(COMMON_NAME_COUNT, commonNameCount);
+
+		return database.update(DATABASE_TABLE_1, args, COMMON_NAME_ROWID + "=" + commonNameId, null) > 0;
+	}
 }

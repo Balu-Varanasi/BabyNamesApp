@@ -11,7 +11,7 @@ public class CommonNameDescription extends Activity {
 	String common_name_count;
 	long common_name_rowid;
 	
-	CharSequence text = " users of facebook have this name";
+	CharSequence text = " users of facebook have the name - ";
 	CharSequence description;
 	
 	public static TextView tv;
@@ -27,7 +27,7 @@ public class CommonNameDescription extends Activity {
         common_name = extras.getString(CommonNamesAdapter.COMMON_NAME);
         common_name_count = extras.getString(CommonNamesAdapter.COMMON_NAME_COUNT).toString();
         
-        description = common_name + text;
+        description = common_name_count + text + common_name;
         tv = (TextView)findViewById(R.id.common_name_description_text);
         
         tv.setText(description);
