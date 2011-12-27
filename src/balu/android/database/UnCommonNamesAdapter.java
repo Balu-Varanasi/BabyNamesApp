@@ -35,17 +35,6 @@ public class UnCommonNamesAdapter {
 	public void close() {
 		database.close();
 	}
-		  
-	public long createUnCommonName(String uncommonName, String unCommonNameMeaning) {
-		Log.i(TAG, "Inserting record...");
-
-	    ContentValues initialValues = new ContentValues();
-
-	    initialValues.put(UN_COMMON_NAME, uncommonName);
-	    initialValues.put(UN_COMMON_NAME_MEANING, unCommonNameMeaning);
-	    
-	    return database.insert(DATABASE_TABLE_2, null, initialValues);
-	}
 	
 	public boolean deleteUnCommonName(long rowId) {
 	    return database.delete(DATABASE_TABLE_2, UN_COMMON_NAME_ROWID + "=" + rowId, null) > 0;

@@ -38,17 +38,6 @@ public class CommonNamesAdapter {
 		database.close();
 	}
 
-	public long createCommonName(String commonNameCount, String commonName) {
-		Log.i(TAG, "Inserting record...");
-
-		ContentValues initialValues = new ContentValues();
-
-		initialValues.put(COMMON_NAME_COUNT, commonNameCount);
-		initialValues.put(COMMON_NAME, commonName);
-
-		return database.insert(DATABASE_TABLE_1, null, initialValues);
-	} 
-
 	public boolean deleteCommonName(long rowId) {
 		return database.delete(DATABASE_TABLE_1, COMMON_NAME_ROWID + "=" + rowId, null) > 0;
 	}
