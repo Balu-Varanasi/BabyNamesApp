@@ -86,7 +86,7 @@ public class BabyNamesDBHelper extends SQLiteOpenHelper {
 	}
 
 	private void insertDataIntoCommonNames(SQLiteDatabase db) {
-		
+
 		try{
 			InputStream is = context.getResources().openRawResource(R.raw.commonnames);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -112,31 +112,31 @@ public class BabyNamesDBHelper extends SQLiteOpenHelper {
 		}
 
 	}
-	
+
 	private void insertDataIntoUnCommonNames(SQLiteDatabase db) {
-	      
-	    try{
-	    	InputStream is = context.getResources().openRawResource(R.raw.uncommonnames);
-	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-	        String strLine = null;
 
-	    	while ((strLine = br.readLine()) != null) {
-	    		String[] temp;
+		try{
+			InputStream is = context.getResources().openRawResource(R.raw.uncommonnames);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			String strLine = null;
 
-	    		strLine = strLine.trim();
-	    		temp = strLine.split(":");
-		    	
-			    ContentValues initialValues = new ContentValues();
+			while ((strLine = br.readLine()) != null) {
+				String[] temp;
 
-			    initialValues.put(UN_COMMON_NAME, temp[0]);
-			    initialValues.put(UN_COMMON_NAME_MEANING, temp[1]);
-			    
-			    db.insert(DATABASE_TABLE_2, null, initialValues);
-		    }
-	    	is.close();
-	    }
-	    catch (Exception e){
-	    	Log.i(TAG_2, "Error while inserting common names into table");
-	    }
+				strLine = strLine.trim();
+				temp = strLine.split(":");
+
+				ContentValues initialValues = new ContentValues();
+
+				initialValues.put(UN_COMMON_NAME, temp[0]);
+				initialValues.put(UN_COMMON_NAME_MEANING, temp[1]);
+
+				db.insert(DATABASE_TABLE_2, null, initialValues);
+			}
+			is.close();
+		}
+		catch (Exception e){
+			Log.i(TAG_2, "Error while inserting common names into table");
+		}
 	}
 }
